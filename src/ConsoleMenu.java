@@ -17,12 +17,17 @@ public class ConsoleMenu {
     // funkcje menu
 	public void startDialog() {
 		boolean userWantsDialog = true;
-		int wybor;
+		int wybor=-1;
 		do
 		{
 			//saaaaaaa
 			printUserOptions();
-			wybor = scanner.nextInt();
+			try {
+				wybor = scanner.nextInt();		
+			} catch (Exception e) {
+			    System.out.println("Invalid value!");
+			    scanner.nextLine();
+			} 
 			switch(wybor){
 			case 1: wczytajRekordyCSV();
 				break;
@@ -34,9 +39,9 @@ public class ConsoleMenu {
             	break;
 			case 0: userWantsDialog = false;
 				break;
+			default: break;
 			}
-			
-		}while(userWantsDialog);
+		} while(userWantsDialog);
 		scanner.close();
 	}
 	
@@ -66,14 +71,20 @@ public class ConsoleMenu {
     }
     
     private void znajdzMaterial() {
+		System.out.println("MENU - Znajdz przedmiot:");
+		System.out.println("  1. Znajdz po ID");
+		System.out.println("  2. Znajdz po nazwie");
+		System.out.println("  0. Wroc do menu glownego");
+		System.out.println(" ");
     	materialy=database.getMateral("id = '12'");
         wyswietlTablice(materialy);
     }
     
     // funkcja wyswietlajaca tabele
     private void wyswietlTablice(List<Material> materialy) {
+    	Scanner scanner = new Scanner(System.in);
         if(materialy.size()==0) 
-        	System.out.println("Brak element�w w tablicy.");
+        	System.out.println("Brak elementów w tablicy.");
         else {
         	System.out.println("+=============================================================================================================================================+");
         	System.out.println("| ID   | Nazwa przedmiotu                                   | Rzadkość    | Lvl  | Max          | Min          | Ilość         | Zapotrzeb.   |");
