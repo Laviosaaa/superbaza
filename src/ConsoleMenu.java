@@ -56,7 +56,7 @@ public class ConsoleMenu {
 		System.out.println("Trwa wczytywanie z pliku... To może chwile potrwać.");
         materialy=csvFReader.readFromCSV(CSV_FILE);
         database.bigInsertMaterial(materialy);
-		System.out.println("Wczytywanie zako�czone pomy�lnie.");
+		System.out.println("Wczytywanie zakończone pomyślnie.");
 	}
 	
 	// funkcja wyswietlajaca glowna tabele materialy
@@ -76,7 +76,7 @@ public class ConsoleMenu {
         	System.out.println("Brak element�w w tablicy.");
         else {
         	System.out.println("+=============================================================================================================================================+");
-        	System.out.println("| ID   | Nazwa przedmiotu                                   | Rzadko��     | Lvl  | Max          | Min          | Ilosc        | Zapotrzeb.   |");
+        	System.out.println("| ID   | Nazwa przedmiotu                                   | Rzadkość    | Lvl  | Max          | Min          | Ilość         | Zapotrzeb.   |");
         	System.out.println("+---------------------------------------------------------------------------------------------------------------------------------------------+");
         }
         int itemsPerPage = 300;
@@ -96,7 +96,7 @@ public class ConsoleMenu {
             }
             else {
             	System.out.print("\n\n");
-                System.out.println("Wci�nij ENTER, �eby wy�wietli� dalsz� cz�� tabeli...");
+                System.out.println("Wciśnij ENTER, żeby wyświetlić dalszą część tabeli ...");
                 scanner.nextLine();
             }
         }  
@@ -106,6 +106,6 @@ public class ConsoleMenu {
     private void wyczyscTabliceMaterialy() {
     	database.clearTableMaterial();
     	materialy=new ArrayList<Material>();
-		System.out.println("Dane zosta�y wyczyszczone.");
+		System.out.println("Dane zostały wyczyszczone.");
     }
 }
