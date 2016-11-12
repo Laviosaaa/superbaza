@@ -53,7 +53,7 @@ public class ConsoleMenu {
 	
 	// funkcja wczytujaca dane z pliku csv do bazy
 	private void wczytajRekordyCSV() {
-		System.out.println("Trwa wczytywanie z pliku... To mo�e chwile potrwa�.");
+		System.out.println("Trwa wczytywanie z pliku... To może chwile potrwać.");
         materialy=csvFReader.readFromCSV(CSV_FILE);
         database.bigInsertMaterial(materialy);
 		System.out.println("Wczytywanie zako�czone pomy�lnie.");
