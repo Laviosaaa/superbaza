@@ -37,7 +37,7 @@ public class CSVFileReader {
 	public String rarityFromIntToString(int rarity) {
 	    String result;
 	    switch (rarity) {
-	    case 1: result ="Basic";
+	    case 1: result="Basic";
 	        break;
 	    case 2: result="Fine";
 	        break;

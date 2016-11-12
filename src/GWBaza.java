@@ -85,7 +85,7 @@ public class GWBaza {
 	// wrzucanie material do bazy
 	public void insertMaterial(Material material) {
         String command = String.format("INSERT INTO material(nazwa, rzadkosc, lvl, maks_oferta_kupna, min_oferta_sprzed, dostepna_ilosc, zapotrzebowanie) " +
-        		"VALUES('%s', '%s', %d, %d, %d, %d, %d, %d",
+        		"VALUES('%s', '%s', %d, %d, %d, %d, %d)",
         		material.getNazwa(), material.getRzadkosc(), material.getLvl(), 
         		material.getMaksOfertaKupna(), material.getMinOfertaSprzed(), 
         		material.getDostepnaIlosc(), material.getZapotrzebowanie());
@@ -120,8 +120,8 @@ public class GWBaza {
 	// update materialow
 	public void updateMaterial(Material material) {
         String command = String.format("UPDATE material SET nazwa='%s', rzadkosc='%s', lvl=%d, maks_oferta_kupna=%d, " +
-        		"min_oferta_sprzed=%d, dostepna_ilosc=%d, zapotrzebowanie=$d" +
-        		"WHERE id = %d",
+        		"min_oferta_sprzed=%d, dostepna_ilosc=%d, zapotrzebowanie=$d " +
+        		"WHERE id=%d",
         		material.getNazwa(), material.getRzadkosc(), material.getLvl(), material.getMaksOfertaKupna(),
         		material.getMinOfertaSprzed(), material.getDostepnaIlosc(), material.getZapotrzebowanie(),
         		material.getId());

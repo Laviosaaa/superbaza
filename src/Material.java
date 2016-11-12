@@ -10,6 +10,8 @@ public class Material {
 	private int dostepnaIlosc;
 	private int zapotrzebowanie;
 	
+	public Material(){};
+	
 	public Material(int id, String nazwa, String rzadkosc, int lvl, int maksOfertaKupna, int minOfertaSprzed, int dostepnaIlosc, int zapotrzebowanie) {
 		this.id=id;
 		this.nazwa=nazwa;
