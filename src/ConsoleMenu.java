@@ -20,10 +20,11 @@ public class ConsoleMenu {
 		int wybor;
 		do
 		{
+			//saaaaaaa
 			printUserOptions();
 			wybor = reader.nextInt();
 			switch(wybor){
-			case 1: wczytajRekordyCSV();
+			case 1: if(userIsSure()) wczytajRekordyCSV();
 				break;
 			case 2: wypiszRekordyMaterialy();
 				break;
