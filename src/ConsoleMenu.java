@@ -68,29 +68,30 @@ public class ConsoleMenu {
         wyswietlTablice(materialy);
     }
     
+    // menu i funkcje znajdz przedmiot
     private void znajdzMaterial() {
-		System.out.println("MENU - Znajdz przedmiot:");
-		System.out.println("  1. Znajdz po ID");
-		System.out.println("  2. Znajdz po nazwie");
-		System.out.println("  0. Wroc do menu glownego");
-		System.out.println(" ");
 		int wybor=-1;
-		try {
-			wybor = scanner.nextInt();		
-		} catch (Exception e) {
-		    scanner.nextLine();
-		} 
-		switch(wybor){
-		case 1: znajdzMaterialId();
-			break;
-		case 2: znajdzMaterialNazwa();
-			break;
-		case 0: startDialog();
-			break;
-		default: break;
-		}
-    //	materialy=database.getMateral("id = '12'");
-    //    wyswietlTablice(materialy);
+		do {
+			System.out.println("MENU - Znajdz przedmiot:");
+			System.out.println("  1. Znajdz po ID");
+			System.out.println("  2. Znajdz po nazwie");
+			System.out.println("  0. Wroc do menu glownego");
+			System.out.println(" ");
+			try {
+				wybor = scanner.nextInt();		
+			} catch (Exception e) {
+			    scanner.nextLine();
+			} 
+			switch(wybor) {
+			case 1: znajdzMaterialId();
+				break;
+			case 2: znajdzMaterialNazwa();
+				break;
+			case 0: 
+				break;
+			default: break;
+			}
+		} while(wybor!=0);
     }
     
     // funkcja znajdujaca przedmiot po id
