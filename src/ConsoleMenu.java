@@ -20,12 +20,10 @@ public class ConsoleMenu {
 		int wybor=-1;
 		do
 		{
-			//saaaaaaa
 			printUserOptions();
 			try {
 				wybor = scanner.nextInt();		
 			} catch (Exception e) {
-			    System.out.println("Invalid value!");
 			    scanner.nextLine();
 			} 
 			switch(wybor){
@@ -76,7 +74,39 @@ public class ConsoleMenu {
 		System.out.println("  2. Znajdz po nazwie");
 		System.out.println("  0. Wroc do menu glownego");
 		System.out.println(" ");
-    	materialy=database.getMateral("id = '12'");
+		int wybor=-1;
+		try {
+			wybor = scanner.nextInt();		
+		} catch (Exception e) {
+		    scanner.nextLine();
+		} 
+		switch(wybor){
+		case 1: znajdzMaterialId();
+			break;
+		case 2: znajdzMaterialNazwa();
+			break;
+		case 0: startDialog();
+			break;
+		default: break;
+		}
+    //	materialy=database.getMateral("id = '12'");
+    //    wyswietlTablice(materialy);
+    }
+    
+    // funkcja znajdujaca przedmiot po id
+    private void znajdzMaterialId() {
+    	System.out.println("Wpisz ID poszukiwanego przedmiotu:");
+    	int search = scanner.nextInt();
+    	materialy=database.getMateral("id = '" + search + "'");
+        wyswietlTablice(materialy);
+    }
+    
+    // funkcja znajdujaca przedmiot po nazwie
+    private void znajdzMaterialNazwa() {
+    	System.out.println("Wpisz nazwe poszukiwanego przedmiotu:");
+    	scanner.nextLine(); // czyszczenie buffera
+    	String search = scanner.nextLine();
+    	materialy=database.getMateral("nazwa = '" + search + "'");
         wyswietlTablice(materialy);
     }
     
@@ -87,7 +117,7 @@ public class ConsoleMenu {
         	System.out.println("Brak elementów w tablicy.");
         else {
         	System.out.println("+=============================================================================================================================================+");
-        	System.out.println("| ID   | Nazwa przedmiotu                                   | Rzadkość    | Lvl  | Max          | Min          | Ilość         | Zapotrzeb.   |");
+        	System.out.println("| ID   | Nazwa przedmiotu                                   | Rzadkość     | Lvl  | Max          | Min          | Ilość        | Zapotrzeb.   |");
         	System.out.println("+---------------------------------------------------------------------------------------------------------------------------------------------+");
         }
         int itemsPerPage = 300;
@@ -103,7 +133,6 @@ public class ConsoleMenu {
             if (i>=materialy.size()) {
             	System.out.println("+=============================================================================================================================================+");
             	System.out.print("\n\n");
-                System.out.println("----- KONIEC TABELI -----");
             }
             else {
             	System.out.print("\n\n");

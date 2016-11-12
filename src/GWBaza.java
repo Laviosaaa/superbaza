@@ -60,6 +60,7 @@ public class GWBaza {
             Statement stmt = conn.createStatement();
             // wpisywanie materialow do listy
             String query = "SELECT id, nazwa, rzadkosc, lvl, maks_oferta_kupna, min_oferta_sprzed, dostepna_ilosc, zapotrzebowanie FROM material WHERE " + params;
+            System.out.println("SELECT id, nazwa, rzadkosc, lvl, maks_oferta_kupna, min_oferta_sprzed, dostepna_ilosc, zapotrzebowanie FROM material WHERE " + params);
             ResultSet rows = stmt.executeQuery(query);
             
             while(rows.next()) {
