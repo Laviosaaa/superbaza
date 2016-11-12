@@ -12,19 +12,19 @@ public class ConsoleMenu {
 	
     private String CSV_FILE = "src/materials.csv";
     private String tableMaterialFormat = "| %-4d | %-50s | %-12s | %-4s | %-12s | %-12s | %-12s | %-12s |%n";
+    private Scanner scanner = new Scanner(System.in);
 	
     // funkcje menu
 	public void startDialog() {
-		Scanner reader = new Scanner(System.in);
 		boolean userWantsDialog = true;
 		int wybor;
 		do
 		{
 			//saaaaaaa
 			printUserOptions();
-			wybor = reader.nextInt();
+			wybor = scanner.nextInt();
 			switch(wybor){
-			case 1: if(userIsSure()) wczytajRekordyCSV();
+			case 1: wczytajRekordyCSV();
 				break;
 			case 2: wypiszRekordyMaterialy();
 				break;
@@ -37,7 +37,7 @@ public class ConsoleMenu {
 			}
 			
 		}while(userWantsDialog);
-		reader.close();
+		scanner.close();
 	}
 	
 	// wyswietlenie menu dla uzytkownika
@@ -53,10 +53,10 @@ public class ConsoleMenu {
 	
 	// funkcja wczytujaca dane z pliku csv do bazy
 	private void wczytajRekordyCSV() {
-		System.out.println("Trwa wczytywanie z pliku... To mo¿e chwile potrwaæ.");
+		System.out.println("Trwa wczytywanie z pliku... To moï¿½e chwile potrwaï¿½.");
         materialy=csvFReader.readFromCSV(CSV_FILE);
         database.bigInsertMaterial(materialy);
-		System.out.println("Wczytywanie zakoñczone pomyœlnie.");
+		System.out.println("Wczytywanie zakoï¿½czone pomyï¿½lnie.");
 	}
 	
 	// funkcja wyswietlajaca glowna tabele materialy
@@ -72,12 +72,11 @@ public class ConsoleMenu {
     
     // funkcja wyswietlajaca tabele
     private void wyswietlTablice(List<Material> materialy) {
-        Scanner scanner = new Scanner(System.in);
         if(materialy.size()==0) 
-        	System.out.println("Brak elementów w tablicy.");
+        	System.out.println("Brak elementï¿½w w tablicy.");
         else {
         	System.out.println("+=============================================================================================================================================+");
-        	System.out.println("| ID   | Nazwa przedmiotu                                   | Rzadkoœæ     | Lvl  | Max          | Min          | Ilosc        | Zapotrzeb.   |");
+        	System.out.println("| ID   | Nazwa przedmiotu                                   | Rzadkoï¿½ï¿½     | Lvl  | Max          | Min          | Ilosc        | Zapotrzeb.   |");
         	System.out.println("+---------------------------------------------------------------------------------------------------------------------------------------------+");
         }
         int itemsPerPage = 300;
@@ -97,7 +96,7 @@ public class ConsoleMenu {
             }
             else {
             	System.out.print("\n\n");
-                System.out.println("Wciœnij ENTER, ¿eby wyœwietliæ dalsz¹ czêœæ tabeli...");
+                System.out.println("Wciï¿½nij ENTER, ï¿½eby wyï¿½wietliï¿½ dalszï¿½ czï¿½ï¿½ tabeli...");
                 scanner.nextLine();
             }
         }  
@@ -107,6 +106,6 @@ public class ConsoleMenu {
     private void wyczyscTabliceMaterialy() {
     	database.clearTableMaterial();
     	materialy=new ArrayList<Material>();
-		System.out.println("Dane zosta³y wyczyszczone.");
+		System.out.println("Dane zostaï¿½y wyczyszczone.");
     }
 }
