@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleMenu {
-
+	//menu
 	private List<Material> materialy = new ArrayList<Material>();
 	private GWBaza database = new GWBaza();
 	private CSVFileReader csvFReader = new CSVFileReader();
