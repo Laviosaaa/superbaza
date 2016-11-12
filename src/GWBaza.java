@@ -50,6 +50,38 @@ public class GWBaza {
         return materials;
 	}
 	
+	public List<Material> getMateral(String params) {
+        List<Material> materials = new ArrayList<Material>();
+        
+        // polaczenie z bazy
+        try {
+            Class.forName(DRIVER);
+            Connection conn = DriverManager.getConnection(DB_URL);
+            Statement stmt = conn.createStatement();
+            // wpisywanie materialow do listy
+            String query = "SELECT id, nazwa, rzadkosc, lvl, maks_oferta_kupna, min_oferta_sprzed, dostepna_ilosc, zapotrzebowanie FROM material WHERE " + params;
+            ResultSet rows = stmt.executeQuery(query);
+            
+            while(rows.next()) {
+                materials.add(new Material(
+                        rows.getInt("id"),
+                        rows.getString("nazwa"),
+                        rows.getString("rzadkosc"),
+                        rows.getInt("lvl"),
+                        rows.getInt("maks_oferta_kupna"),
+                        rows.getInt("min_oferta_sprzed"),
+                        rows.getInt("dostepna_ilosc"),
+                        rows.getInt("zapotrzebowanie")));
+            }
+            
+            stmt.close();
+            conn.close();
+        }  catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return materials;
+    }
+	
 	// wrzucanie material do bazy
 	public void insertMaterial(Material material) {
         String command = String.format("INSERT INTO material(nazwa, rzadkosc, lvl, maks_oferta_kupna, min_oferta_sprzed, dostepna_ilosc, zapotrzebowanie) " +

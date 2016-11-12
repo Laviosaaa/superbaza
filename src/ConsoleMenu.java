@@ -27,7 +27,9 @@ public class ConsoleMenu {
 				break;
 			case 2: wypiszRekordyMaterialy();
 				break;
-			case 3: wyczyscTabliceMaterialy();
+			case 3: znajdzMaterial();
+				break;
+			case 4: wyczyscTabliceMaterialy();
             	break;
 			case 0: userWantsDialog = false;
 				break;
@@ -42,7 +44,8 @@ public class ConsoleMenu {
 		System.out.println("MENU:");
 		System.out.println("  1. Wczytaj dane z pliku");
 		System.out.println("  2. Wyswetl tabele materialow");
-		System.out.println("  3. Wyczysc dane z tablicy materialow");
+		System.out.println("  3. Znajdz material");
+		System.out.println("  4. Wyczysc dane z tablicy materialow");
 		System.out.println("  0. Wyjdz z programu");
 		System.out.println(" ");
 	}
@@ -58,11 +61,21 @@ public class ConsoleMenu {
 	// funkcja wyswietlajaca glowna tabele materialy
     private void wypiszRekordyMaterialy() {
         materialy=database.getMateral();
+        wyswietlTablice(materialy);
+    }
+    
+    private void znajdzMaterial() {
+    	materialy=database.getMateral("id = '12'");
+        wyswietlTablice(materialy);
+    }
+    
+    // funkcja wyswietlajaca tabele
+    private void wyswietlTablice(List<Material> materialy) {
         Scanner scanner = new Scanner(System.in);
         if(materialy.size()==0) 
         	System.out.println("Brak elementów w tablicy.");
         else {
-        	System.out.println("+== Tabela Materialy =========================================================================================================================+");
+        	System.out.println("+=============================================================================================================================================+");
         	System.out.println("| ID   | Nazwa przedmiotu                                   | Rzadkoœæ     | Lvl  | Max          | Min          | Ilosc        | Zapotrzeb.   |");
         	System.out.println("+---------------------------------------------------------------------------------------------------------------------------------------------+");
         }
@@ -72,7 +85,7 @@ public class ConsoleMenu {
         while (i<materialy.size()) {
             for (;i<materialy.size() && i<pageNumber*itemsPerPage;i++) {
                 Material tmpMat = materialy.get(i);
-                System.out.format(tableMaterialFormat, i, tmpMat.getNazwa(), tmpMat.getRzadkosc(), tmpMat.getLvl(), tmpMat.getMaksOfertaKupna(), 
+                System.out.format(tableMaterialFormat, tmpMat.getId(), tmpMat.getNazwa(), tmpMat.getRzadkosc(), tmpMat.getLvl(), tmpMat.getMaksOfertaKupna(), 
                     tmpMat.getMinOfertaSprzed(), tmpMat.getDostepnaIlosc(), tmpMat.getZapotrzebowanie());
             }
             pageNumber++;
@@ -86,7 +99,7 @@ public class ConsoleMenu {
                 System.out.println("Wciœnij ENTER, ¿eby wyœwietliæ dalsz¹ czêœæ tabeli...");
                 scanner.nextLine();
             }
-        }         
+        }  
     }
     
     // funkcja czyszczaca dane z tablicy materialy
