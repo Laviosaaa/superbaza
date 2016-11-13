@@ -120,7 +120,7 @@ public class GWBaza {
 	// update materialow
 	public void updateMaterial(Material material) {
         String command = String.format("UPDATE material SET nazwa='%s', rzadkosc='%s', lvl=%d, maks_oferta_kupna=%d, " +
-        		"min_oferta_sprzed=%d, dostepna_ilosc=%d, zapotrzebowanie=$d " +
+        		"min_oferta_sprzed=%d, dostepna_ilosc=%d, zapotrzebowanie=%d " +
         		"WHERE id=%d",
         		material.getNazwa(), material.getRzadkosc(), material.getLvl(), material.getMaksOfertaKupna(),
         		material.getMinOfertaSprzed(), material.getDostepnaIlosc(), material.getZapotrzebowanie(),

@@ -47,7 +47,8 @@ public class ConsoleMenu {
 	
 	// wyswietlenie menu dla uzytkownika
 	private void printUserOptions() {
-		System.out.println("MENU:");
+		System.out.println("MENU GLOWNE");
+		System.out.println("===========");
 		System.out.println("  1. Wczytaj dane z pliku");
 		System.out.println("  2. Wyswetl tabele materialow");
 		System.out.println("  3. Znajdz material");
@@ -55,6 +56,7 @@ public class ConsoleMenu {
 		System.out.println("  5. Wyczysc dane z tablicy materialow");
 		System.out.println("  0. Wyjdz z programu");
 		System.out.println(" ");
+		System.out.print("Wybierz: ");
 	}
 	
 	// funkcja wczytujaca dane z pliku csv do bazy
@@ -63,23 +65,27 @@ public class ConsoleMenu {
         materialy=csvFReader.readFromCSV(CSV_FILE);
         database.bigInsertMaterial(materialy);
 		System.out.println("Wczytywanie zakończone pomyślnie.");
+		System.out.print("\n\n");
 	}
 	
 	// funkcja wyswietlajaca glowna tabele materialy
     private void wypiszRekordyMaterialy() {
         materialy=database.getMateral();
         wyswietlTablice(materialy);
+        System.out.print("\n\n");
     }
     
     // menu i funkcje znajdz przedmiot
     private void znajdzMaterial() {
 		int wybor=-1;
 		do {
-			System.out.println("MENU // Znajdz przedmiot:");
+			System.out.println("MENU GLOWNE // ZNAJDZ PRZEDMIOT");
+			System.out.println("===============================");
 			System.out.println("  1. Znajdz po ID");
 			System.out.println("  2. Znajdz po nazwie");
 			System.out.println("  0. Wroc do menu glownego");
 			System.out.println(" ");
+			System.out.print("Wybierz: ");
 			try {
 				wybor = scanner.nextInt();		
 			} catch (Exception e) {
@@ -103,6 +109,7 @@ public class ConsoleMenu {
     	int search = inputInt();
     	materialy=database.getMateral("id = '" + search + "'");
         wyswietlTablice(materialy);
+        System.out.print("\n\n");
     }
     
     // funkcja znajdujaca przedmiot po nazwie
@@ -112,18 +119,21 @@ public class ConsoleMenu {
     	String search = scanner.nextLine();
     	materialy=database.getMateral("nazwa = '" + search + "'");
         wyswietlTablice(materialy);
+        System.out.print("\n\n");
     }
     
     // menu i funkcje edytuj tablice materialy
     private void edytujTabliceMaterialy() {
 		int wybor=-1;
 		do {
-			System.out.println("MENU // Edytuj tabele materialow:");
+			System.out.println("MENU GLOWNE // EDYTUJ TABELE MATERIALOW");
+			System.out.println("=======================================");
 			System.out.println("  1. Dodaj nowy material");
 			System.out.println("  2. Edytuj istniejacy material");
 			System.out.println("  3. Usun istniejacy material");
 			System.out.println("  0. Wroc do menu glownego");
 			System.out.println(" ");
+			System.out.print("Wybierz: ");
 			try {
 				wybor = scanner.nextInt();		
 			} catch (Exception e) {
@@ -160,7 +170,7 @@ public class ConsoleMenu {
     	System.out.println(" 6 = Ascended");
     	System.out.println(" 7 = Legendary");
     	System.out.println(" Inna wartosc = Junk");
-    	System.out.println("Podaj wartość rzadkosc w formie cyfry(skorzystaj z tabeli pomocniczej powyzej):");
+    	System.out.print("Podaj wartość rzadkosc w formie cyfry(skorzystaj z tabeli pomocniczej powyzej): ");
     	liczba=inputInt();
     	tekst = csvFReader.rarityFromIntToString(liczba);
     	nowymaterial.setRzadkosc(tekst);
@@ -189,13 +199,16 @@ public class ConsoleMenu {
     	int search = inputInt();
 		int wybor=-1;
 		materialy=database.getMateral("id = '" + search + "'");
-		if(search==0){
+		if(materialy.size()==0){
 			System.out.println("Nie znaleziono przedmiotu.");
+			System.out.print("\n\n");
 			return;
 		}
 		do {
-			System.out.println("MENU // Edytuj tabele materialow // Edytuj istniejacy material");
-			System.out.println("Podaj wartosc, ktora chcesz zmienic dla podanego przedmiotu, pamietaj o zapisaniu wprowadzonych zmian!");
+			System.out.println("MENU GLOWNE // EDYTUJ TABELE MATERIALOW // EDYTUJ ISTNIEJACY MATERIAL");
+			System.out.println("=====================================================================");
+			System.out.println("Wybierz kolumny, ktorych wartosc chcesz zmienic.");
+			System.out.println("Pamietaj, zeby po wprowadzeniu zmian do przedmiotu zapisac calosc do bazy(Opcja 8 lub 9) inaczej wprowadzone informacje zostana utracone!");
 			System.out.println("  1. Nazwe przedmiotu");
 			System.out.println("  2. Rzadkosc przedmiotu");
 			System.out.println("  3. Wymagany poziom przedmiotu");
@@ -209,12 +222,12 @@ public class ConsoleMenu {
 			System.out.println("  0. Anuluj edycje przedmiotu");
 			wyswietlTablice(materialy);
 			System.out.println(" ");
+			System.out.print("Wybierz: ");
 			try {
 				wybor = scanner.nextInt();		
 			} catch (Exception e) {
 			    scanner.nextLine();
 			} 
-			scanner.nextLine();
 			switch(wybor) {
 			case 1: System.out.println("Wprowadz nowa nazwe przedmiotu:");
 				materialy.get(0).setNazwa(scanner.nextLine());
@@ -228,7 +241,7 @@ public class ConsoleMenu {
 		    	System.out.println(" 6 = Ascended");
 		    	System.out.println(" 7 = Legendary");
 		    	System.out.println(" Inna wartosc = Junk");
-		    	System.out.println("Wprowadz nowa wartość rzadkosc w formie cyfry(skorzystaj z tabeli pomocniczej powyzej):");
+		    	System.out.print("Wprowadz nowa wartość rzadkosc w formie cyfry(skorzystaj z tabeli pomocniczej powyzej): ");
 				liczba=inputInt();
 				materialy.get(0).setRzadkosc(csvFReader.rarityFromIntToString(liczba));
 				break;
@@ -239,25 +252,26 @@ public class ConsoleMenu {
 				materialy.get(0).setMaksOfertaKupna(inputInt());
 				break;
 			case 5: System.out.println("Wprowadz nowa minimalna oferte sprzedazy przedmiotu:");
-			materialy.get(0).setMinOfertaSprzed(inputInt());
+				materialy.get(0).setMinOfertaSprzed(inputInt());
 				break;
 			case 6: System.out.println("Wprowadz nowa dostepna ilosc przedmiotu:");
-			materialy.get(0).setDostepnaIlosc(inputInt());
+				materialy.get(0).setDostepnaIlosc(inputInt());
 				break;
 			case 7: System.out.println("Wprowadz nowe zapotrzebowanie dla przedmiotu:");
-			materialy.get(0).setZapotrzebowanie(inputInt());
+				materialy.get(0).setZapotrzebowanie(inputInt());
 				break;
 			case 8:	database.updateMaterial(materialy.get(0));
 				materialy=database.getMateral("id = '" + search + "'");
 				System.out.println("Edycja zapisana.");
 				break;
 			case 9: database.updateMaterial(materialy.get(0));
-				System.out.println("Edycja zapisana i zakonczona pomyslnie.\n\n");
+				System.out.println("Edycja zapisana i zakonczona pomyslnie.");
 				break;
-			case 0: System.out.println("Edycja zakonczona.\n\n");
+			case 0: System.out.println("Edycja zakonczona.");
 				break;
 			default: break;
 			}
+			System.out.print("\n\n");
 		} while(wybor!=0 && wybor!=9);
     }
     
@@ -302,10 +316,8 @@ public class ConsoleMenu {
             pageNumber++;
             if (i>=materialy.size()) {
             	System.out.println("+=============================================================================================================================================+");
-            	System.out.print("\n\n");
             }
             else {
-            	System.out.print("\n\n");
                 System.out.println("Wciśnij ENTER, żeby wyświetlić dalszą część tabeli ...");
                 scanner.nextLine();
             }
@@ -317,5 +329,6 @@ public class ConsoleMenu {
     	database.clearTableMaterial();
     	materialy=new ArrayList<Material>();
 		System.out.println("Dane zostały wyczyszczone.");
+		System.out.print("\n\n");
     }
 }
