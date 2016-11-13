@@ -122,7 +122,7 @@ public class ConsoleMenu {
         System.out.print("\n\n");
     }
     
-    // menu i funkcje edytuj tablice materialy
+    // menu i funkcje edytuj tabele materialy
     private void edytujTabliceMaterialy() {
 		int wybor=-1;
 		do {
@@ -153,6 +153,7 @@ public class ConsoleMenu {
 		} while(wybor!=0);
     }
     
+    // funkcja dodajaca nowy material do tabeli materialy
     private void edytujTabliceMaterialyDodaj() {
     	String tekst;
     	int liczba;
@@ -193,6 +194,7 @@ public class ConsoleMenu {
     	System.out.println("Przedmiot zostal pomyslnie dodany do bazy!");
     }
     
+    // funkcja pozwalajaca edytowac material z tabeli materialy
     private void edytujTabliceMaterialyEdytuj() {
     	int liczba;
     	System.out.println("Wpisz ID przedmiotu do edycji:");
@@ -275,6 +277,7 @@ public class ConsoleMenu {
 		} while(wybor!=0 && wybor!=9);
     }
     
+    // funkcja usuwajaca material z tabeli materialy
     private void edytujTabliceMaterialyUsun() {
     	int liczba;
     	System.out.println("Podaj ID przedmiotu do usuniecia:");

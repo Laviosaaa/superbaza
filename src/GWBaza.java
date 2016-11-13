@@ -107,8 +107,7 @@ public class GWBaza {
                     material.getNazwa(), material.getRzadkosc(), material.getLvl(), 
                     material.getMaksOfertaKupna(), material.getMinOfertaSprzed(), 
                     material.getDostepnaIlosc(), material.getZapotrzebowanie());
-            //executeCommand(command);
-            stmt.executeUpdate(command);
+                stmt.executeUpdate(command);
             }
             stmt.close();
             conn.close();
